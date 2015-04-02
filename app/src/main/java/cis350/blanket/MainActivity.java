@@ -1,26 +1,26 @@
 package cis350.blanket;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+
+    public static final int ScanActivity_ID = 1;
+
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -49,10 +49,33 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+
+        // Handle items being selected in the navigation drawer
+
+//        // News feed
+//        if (position == 0){
+//
+//        }
+//
+//        // Scan QR code
+//        if (position == 1) {
+//
+//            Toast.makeText(getApplicationContext(), "Just picked option 1", Toast.LENGTH_SHORT).show();
+//
+//            Intent i = new Intent(this, ScanActivity.class);
+//            startActivityForResult(i, ScanActivity_ID);
+//        }
+//
+//        // View relationships
+//        if (position == 2) {
+//
+//        }
+
+
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                .replace(R.id.container, MenuItemFragment.newInstance(position + 1))
                 .commit();
     }
 
@@ -92,6 +115,7 @@ public class MainActivity extends ActionBarActivity
     }
 
     @Override
+    // Action bar (top of the screen)
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -106,35 +130,41 @@ public class MainActivity extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
+    // Fragment containing a simple view
+    public static class MenuItemFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
+        public static int menuIndex;
 
         /**
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
+        public static MenuItemFragment newInstance(int sectionNumber) {
+
+            MenuItemFragment fragment = new MenuItemFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            menuIndex = sectionNumber - 1;
             fragment.setArguments(args);
             return fragment;
         }
 
-        public PlaceholderFragment() {
+        public MenuItemFragment() {
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            View rootView;
+            if (menuIndex == 1) {
+                rootView = inflater.inflate(R.layout.fragment_scan, container, false);
+            } else {
+                rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            }
             return rootView;
         }
 
