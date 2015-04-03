@@ -26,9 +26,12 @@ public class DonationAmount extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donation_amount);
+
         context = getApplicationContext();
         input = (EditText) findViewById(R.id.editText);
+
         submit = (Button) findViewById(R.id.button);
+
         input.setGravity(Gravity.CENTER_HORIZONTAL);
         submit.setOnClickListener(new View.OnClickListener() {
 

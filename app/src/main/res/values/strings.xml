@@ -14,6 +14,7 @@
     <string name="title_activity_scan">ScanActivity</string>
     <string name="scan_label">Scan a new QR code</string>
     <string name="scan_button">Scan</string>
+    <string name="pick_button">Choose Item</string>
 
     <string name="facebook_app_id">1641620282732941</string>
     <string name="title_activity_login">LoginActivity</string>

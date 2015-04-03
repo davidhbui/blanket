@@ -24,9 +24,12 @@ public class ScanActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     private String codeResults;
-
     private MyDBHandler dbHandler;
-
+    private String selection;
+    public static final int DonationAmount_ID = 4;
+    private ListView checkList;
+    private String[] arr;
+    private boolean fill;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,9 @@ public class ScanActivity extends ActionBarActivity
         setContentView(R.layout.activity_scan);
 
         dbHandler = new MyDBHandler(this, null, null, 1);
+
+        selection = "";
+        fill = false;
 
         // If we have a string to look at, process it
         if (codeResults.compareTo("") != 0) {
@@ -71,28 +77,20 @@ public class ScanActivity extends ActionBarActivity
 
             // Separate out by comma
             String [] items = giftBasket.split(",");
-            String [] arr = new String[items.length + 1];
+            arr = new String[items.length + 1];
             for (int i = 0; i < items.length; i++) {
                 arr[i] = items[i];
             }
             arr[items.length] = "General Donation";
 
-            ListView checkList = (ListView) findViewById(R.id.checkBox);
+            fill = true;
+            checkList = (ListView) findViewById(R.id.checkBox);
             checkList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             checkList.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, R.id.text1, arr));
+            checkList.setOnItemSelectedListener(new MyListListener());
 
         }
 
-    }
-
-
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-
-        IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-        if (scanResult != null) {
-            String contents = "The code says " + scanResult.getContents();
-            Toast.makeText(getApplicationContext(), contents, Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override
@@ -115,6 +113,24 @@ public class ScanActivity extends ActionBarActivity
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    public void onScanButtonClick(View v) {
+
+        if (fill == true) {
+
+            MyListListener listener = (MyListListener)checkList.getOnItemSelectedListener();
+            int index = listener.choice;
+            selection = arr[index];
+
+            Intent i = new Intent(this, DonationAmount.class);
+            i.putExtra("item", selection);
+            startActivityForResult(i, DonationAmount_ID);
+        } else {
+            Toast.makeText(getApplicationContext(), "Make a selection", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     public void onNavigationDrawerItemSelected(int position) {
 

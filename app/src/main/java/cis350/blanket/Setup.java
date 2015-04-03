@@ -23,7 +23,6 @@ public class Setup extends ActionBarActivity {
         welcomeDisplay.setText("Welcome \nPlease enter the information requested below to register!");
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
