@@ -54,9 +54,9 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public Person findProduct(String productname) {
+    public Person findProduct(String personName) {
         String query = "Select * FROM " + TABLE_PERSONS + " WHERE " +
-                COLUMN_PERSONNAME + " =  \"" + productname + "\"";
+                COLUMN_PERSONNAME + " =  \"" + personName + "\"";
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -77,12 +77,12 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return product;
     }
 
-    public boolean deleteProduct(String productname) {
+    public boolean deleteProduct(String personName) {
 
         boolean result = false;
 
         String query = "Select * FROM " + TABLE_PERSONS + " WHERE " + COLUMN_PERSONNAME +
-                " =  \"" + productname + "\"";
+                " =  \"" + personName + "\"";
 
         SQLiteDatabase db = this.getWritableDatabase();
 

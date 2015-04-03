@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.Toast;
 
+import com.google.zxing.client.android.Intents;
+
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -22,14 +24,10 @@ public class MainActivity extends ActionBarActivity
     public static final int ScanActivity_ID = 1;
 
 
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
+     // Fragment managing the behaviors, interactions and presentation of the navigation drawer.
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
+    //  Used to store the last screen title. For use in {@link #restoreActionBar()}.
     private CharSequence mTitle;
 
     @Override
@@ -48,29 +46,8 @@ public class MainActivity extends ActionBarActivity
     }
 
     @Override
-    public void onNavigationDrawerItemSelected(int position) {
-
-        // Handle items being selected in the navigation drawer
-
-//        // News feed
-//        if (position == 0){
-//
-//        }
-//
-//        // Scan QR code
-//        if (position == 1) {
-//
-//            Toast.makeText(getApplicationContext(), "Just picked option 1", Toast.LENGTH_SHORT).show();
-//
-//            Intent i = new Intent(this, ScanActivity.class);
-//            startActivityForResult(i, ScanActivity_ID);
-//        }
-//
-//        // View relationships
-//        if (position == 2) {
-//
-//        }
-
+// Handle items being selected in the navigation drawer
+   public void onNavigationDrawerItemSelected(int position) {
 
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -100,6 +77,24 @@ public class MainActivity extends ActionBarActivity
         actionBar.setTitle(mTitle);
     }
 
+    // What happens when you press the scan button
+    public void onScanButtonClick(View v) {
+        IntentIntegrator integrator = new IntentIntegrator(this);
+        integrator.setOrientation(1);
+        integrator.initiateScan();
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+
+        IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+        if (scanResult != null) {
+
+            Intent i = new Intent(this, ScanActivity.class);
+            i.putExtra("scanResult", scanResult.getContents());
+            startActivityForResult(i, ScanActivity_ID);
+
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -128,52 +123,6 @@ public class MainActivity extends ActionBarActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    // Fragment containing a simple view
-    public static class MenuItemFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-        public static int menuIndex;
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static MenuItemFragment newInstance(int sectionNumber) {
-
-            MenuItemFragment fragment = new MenuItemFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            menuIndex = sectionNumber - 1;
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public MenuItemFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView;
-            if (menuIndex == 1) {
-                rootView = inflater.inflate(R.layout.fragment_scan, container, false);
-            } else {
-                rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            }
-            return rootView;
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((MainActivity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
-        }
     }
 
 }
