@@ -32,6 +32,10 @@
             android:name=".util.Setup"
             android:label="@string/title_activity_setup" >
         </activity>
+        <activity
+            android:name=".util.Startup"
+            android:label="@string/title_activity_startup" >
+        </activity>
     </application>
 
 </manifest>

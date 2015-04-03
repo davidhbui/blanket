@@ -15,5 +15,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_setup">Setup</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_startup">Startup</string>
 
 </resources>
