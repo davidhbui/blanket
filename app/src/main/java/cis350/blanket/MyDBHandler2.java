@@ -9,19 +9,22 @@ import android.content.Context;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-public class MyDBHandler extends SQLiteOpenHelper {
+public class MyDBHandler2 extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "panhandlerDB.db";
+    private static final String DATABASE_NAME = "fbPersonDB.db";
     private static final String TABLE_PERSONS = "persons";
     private static final String TABLE_GIFT = "gifts";
 
     public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_PERSONNAME = "personname";
-    public static final String COLUMN_QUANTITY = "quantity";
+    public static final String COLUMN_FULLNAME = "fullname";
+    public static final String COLUMN_DONATIONAMOUNT = "donationamount";
+    public static final String COLUMN_PIN = "pin";
+    public static final String COLUMN_CCNUMBER = "ccnumber";
+    public static final String COLUMN_DONATIONINFO = "donationinfo";
     public static final String COLUMN_GIFT = "gift";
 
-    public MyDBHandler(Context context, String name,
+    public MyDBHandler2(Context context, String name,
                        SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
@@ -30,8 +33,9 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_PRODUCTS_TABLE = "CREATE TABLE " +
                 TABLE_PERSONS + "("
-                + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_PERSONNAME
-                + " TEXT," + COLUMN_QUANTITY + " INTEGER, " + COLUMN_GIFT + " TEXT" + ")";
+                + COLUMN_ID + " INTEGER PRIMARY KEY," + COLUMN_FULLNAME
+                + " TEXT," + COLUMN_DONATIONAMOUNT + " DOUBLE, " + COLUMN_PIN + " TEXT,"
+                + COLUMN_CCNUMBER + " TEXT," + COLUMN_DONATIONINFO + " TEXT" + ")";
         db.execSQL(CREATE_PRODUCTS_TABLE);
     }
 
@@ -42,12 +46,14 @@ public class MyDBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addPerson(Person person) {
+    public void addPerson(fbPerson person) {
 
         ContentValues values = new ContentValues();
-        values.put(COLUMN_PERSONNAME, person.getProductName());
-        values.put(COLUMN_QUANTITY, person.getQuantity());
-        values.put(COLUMN_GIFT, person.get_giftBasket());
+        values.put(COLUMN_FULLNAME, person.getPersonName());
+        values.put(COLUMN_DONATIONAMOUNT, person.getDonationAmount());
+        values.put(COLUMN_PIN, person.getPin());
+        values.put(COLUMN_CCNUMBER, person.getCcNumber());
+        values.put(COLUMN_DONATIONINFO, person.getDonationInfo());
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -55,22 +61,23 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public Person findProduct(String personName) {
+    public fbPerson findProduct(String personName) {
         String query = "Select * FROM " + TABLE_PERSONS + " WHERE " +
-                COLUMN_PERSONNAME + " =  \"" + personName + "\"";
+                COLUMN_FULLNAME + " =  \"" + personName + "\"";
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = db.rawQuery(query, null);
 
-        Person product = new Person();
+        fbPerson product = new fbPerson();
 
         if (cursor.moveToFirst()) {
             cursor.moveToFirst();
             product.setID(Integer.parseInt(cursor.getString(0)));
-            product.setProductName(cursor.getString(1));
-            product.setQuantity(Integer.parseInt(cursor.getString(2)));
-            product.set_giftBasket(cursor.getString(3));
+            product.setDonationAmount(Integer.parseInt(cursor.getString(1)));
+            product.setPin(cursor.getString(2));
+            product.setCcNumber(cursor.getString(3));
+            product.setDonationInfo(cursor.getString(4));
             cursor.close();
         } else {
             product = null;
@@ -83,14 +90,14 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
         boolean result = false;
 
-        String query = "Select * FROM " + TABLE_PERSONS + " WHERE " + COLUMN_PERSONNAME +
+        String query = "Select * FROM " + TABLE_PERSONS + " WHERE " + COLUMN_FULLNAME +
                 " =  \"" + personName + "\"";
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = db.rawQuery(query, null);
 
-        Person product = new Person();
+        fbPerson product = new fbPerson();
 
         if (cursor.moveToFirst()) {
             product.setID(Integer.parseInt(cursor.getString(0)));

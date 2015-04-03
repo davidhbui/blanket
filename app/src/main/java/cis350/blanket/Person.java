@@ -52,6 +52,10 @@ public class Person {
     public int getQuantity() {
         return this._quantity;
     }
+
+    public void set_giftBasket(String gift) {
+        _giftBasket = gift;
+    }
 /*
     public void addGift(String gift) {
         if (this._giftBasket.equals("")) {

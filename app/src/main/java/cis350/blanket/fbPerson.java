@@ -9,24 +9,28 @@ import java.util.ArrayList;
 public class fbPerson {
 
     private int _id;
-    private String _giftBasket;
-    private String _personName;
-    private int _quantity;
+    private String fullName;
+    private String pin;
+    private double donationAmount;
+    private String ccNumber;
+    private String donationInfo;
 
     public fbPerson() {
 
     }
 
-    public fbPerson(int id, String personName, int quantity, String giftBasket) {
+    public fbPerson(int id, String fullName, String pin, String ccNumber) {
+        donationAmount = 0.0;
         this._id = id;
-        this._giftBasket = giftBasket;
-        this._personName = personName;
-        this._quantity = quantity;
+        this.fullName = fullName;
+        this.pin = pin;
+        this.ccNumber = ccNumber;
+        donationInfo = "";
     }
 
-    public fbPerson(String productname, int quantity) {
-        this._personName = productname;
-        this._quantity = quantity;
+
+    public void setFullName(String name) {
+        fullName = name;
     }
 
     public void setID(int id) {
@@ -37,31 +41,44 @@ public class fbPerson {
         return this._id;
     }
 
-    public void setProductName(String productname) {
-        this._personName = productname;
+    public double getDonationAmount() {
+        return donationAmount;
     }
 
-    public String getProductName() {
-        return this._personName;
+    public void setDonationAmount(double amount) {
+        donationAmount = amount;
     }
 
-    public void setQuantity(int quantity) {
-        this._quantity = quantity;
+    public void setDonationInfo(String info) {
+        donationInfo = info;
     }
 
-    public int getQuantity() {
-        return this._quantity;
+    public String getDonationInfo() {
+        return donationInfo;
     }
-    /*
-        public void addGift(String gift) {
-            if (this._giftBasket.equals("")) {
-                this._giftBasket = "gift";
-            } else {
-                this._giftBasket += ", " + gift;
-            }
-        }
-        */
-    public String get_giftBasket() {
-        return _giftBasket;
+
+
+    public String getPersonName() {
+        return this.fullName;
     }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
+    }
+    public String getPin() {
+        return pin;
+    }
+
+    public void setCcNumber(String cc) {
+        this.ccNumber = cc;
+    }
+
+    public String getCcNumber() {
+        return ccNumber;
+    }
+
 }

@@ -12,13 +12,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.LinkedHashMap;
 
 // Activity to scan a QR code
 public class ScanActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     private String codeResults;
+
+    private MyDBHandler dbHandler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,21 +36,53 @@ public class ScanActivity extends ActionBarActivity
         Bundle extras = getIntent().getExtras();
         codeResults = (String)extras.get("scanResult");
 
+        setContentView(R.layout.activity_scan);
 
-
+        dbHandler = new MyDBHandler(this, null, null, 1);
 
         // If we have a string to look at, process it
         if (codeResults.compareTo("") != 0) {
             process();
         }
 
-        setContentView(R.layout.activity_scan);
     }
 
     // What happens when you press the scan button
     public void process() {
-        String contents = "The code says " + codeResults;
-        Toast.makeText(getApplicationContext(), contents, Toast.LENGTH_SHORT).show();
+
+        String contents = codeResults;
+        //Toast.makeText(getApplicationContext(), contents, Toast.LENGTH_SHORT).show();
+
+        // Make a dummy (extremely handsome) person
+        Person david = new Person(1, "David", 0, "Food,Blanket,Jacket,Water");
+        dbHandler.addPerson(david);
+
+        contents = "David";
+
+        Person client = dbHandler.findProduct(contents);
+
+        // If we find a match in the database
+        if (client != null) {
+
+            // Getting the giftbasket doesn't seem to work
+            //String giftBasket = client.get_giftBasket();
+
+            String giftBasket = "Food,Blanket,Jacket,Water";
+
+            // Separate out by comma
+            String [] items = giftBasket.split(",");
+            String [] arr = new String[items.length + 1];
+            for (int i = 0; i < items.length; i++) {
+                arr[i] = items[i];
+            }
+            arr[items.length] = "General Donation";
+
+            ListView checkList = (ListView) findViewById(R.id.checkBox);
+            checkList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+            checkList.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, R.id.text1, arr));
+
+        }
+
     }
 
 
