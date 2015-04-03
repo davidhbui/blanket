@@ -28,6 +28,7 @@ public class PasscodeScreen extends ActionBarActivity {
         input = (EditText) findViewById(R.id.editText2);
         submit = (Button) findViewById(R.id.button3);
         input.setGravity(Gravity.CENTER_HORIZONTAL);
+        final Intent previous = getIntent();
         submit.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -36,6 +37,8 @@ public class PasscodeScreen extends ActionBarActivity {
                 String string = input.getText().toString();
                 if (string.equals("answer")) {
                     Intent myIntent = new Intent(context, PaymentConfirmation.class);
+                    myIntent.putExtra("item", previous.getStringExtra("item"));
+
                     startActivity(myIntent);
                 }
                 else {

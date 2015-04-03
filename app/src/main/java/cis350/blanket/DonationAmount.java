@@ -33,18 +33,18 @@ public class DonationAmount extends ActionBarActivity {
         submit = (Button) findViewById(R.id.button);
 
         input.setGravity(Gravity.CENTER_HORIZONTAL);
+        final Intent previous = getIntent();
+
         submit.setOnClickListener(new View.OnClickListener() {
 
             @Override
 
             public void onClick(View v) {
                 Intent myIntent = new Intent(context, PasscodeScreen.class);
+                myIntent.putExtra("item", previous.getStringExtra("item"));
                 startActivity(myIntent);
             }
         });
-
-        Intent previous = getIntent();
-        input.setText(previous.getStringExtra("defaultPayment"));
 
         input.setText("$5.00");
 

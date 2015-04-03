@@ -1,11 +1,15 @@
 package cis350.blanket;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareButton;
 
 //import com.facebook.share.model.ShareLinkContent;
 //import com.facebook.share.widget.ShareButton;
@@ -17,13 +21,15 @@ public class PaymentConfirmation extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_confirmation);
-//        ShareButton shareButton = (ShareButton)findViewById(R.id.button2);
-//
-//        ShareLinkContent content = new ShareLinkContent.Builder()
-//                .setContentUrl(Uri.parse("https://developers.facebook.com"))
-//                .build();
-//
-//        shareButton.setShareContent(content);
+        ShareButton shareButton = (ShareButton)findViewById(R.id.button2);
+        final Intent previous = getIntent();
+
+        ShareLinkContent content = new ShareLinkContent.Builder()
+                .setContentDescription("I donated" + previous.getStringExtra("item") + ". You can" +
+                        "make a difference here too!")
+                .build();
+
+        shareButton.setShareContent(content);
     }
 
 
