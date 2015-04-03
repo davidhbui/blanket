@@ -14,12 +14,16 @@
     <string name="title_activity_scan">ScanActivity</string>
     <string name="scan_label">Scan a new QR code</string>
     <string name="scan_button">Scan</string>
+
     <string name="facebook_app_id">1641620282732941</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
     <string name="title_activity_setup">Setup</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_startup">Startup</string>
+
     <string name="title_activity_donation_amount">DonationAmount</string>
     <string name="title_activity_passcode_screen">PasscodeScreen</string>
     <string name="title_activity_payment_confirmation">PaymentConfirmation</string>

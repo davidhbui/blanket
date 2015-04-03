@@ -33,8 +33,12 @@
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name=".util.Setup"
+            android:name=".Setup"
             android:label="@string/title_activity_setup" >
+        </activity>
+        <activity
+            android:name=".Startup"
+            android:label="@string/title_activity_startup" >
         </activity>
         <activity
             android:name=".DonationAmount"
