@@ -63,17 +63,20 @@ public class ScanActivity extends ActionBarActivity
         Person david = new Person(1, "David", 0, "Food,Blanket,Jacket,Water");
         dbHandler.addPerson(david);
 
-        contents = "David";
+        // Hard coded this in so that the demo would work with any QR code that it reads
+        //contents = "David";
 
+        // Get the person from the DB
         Person client = dbHandler.findProduct(contents);
 
         // If we find a match in the database
         if (client != null) {
 
             // Getting the giftbasket doesn't seem to work
-            //String giftBasket = client.get_giftBasket();
+            String giftBasket = client.get_giftBasket();
 
-            String giftBasket = "Food,Blanket,Jacket,Water";
+            // Hard coded this in because getting the gift basket didn't seem to work
+            //String giftBasket = "Food,Blanket,Jacket,Water";
 
             // Separate out by comma
             String [] items = giftBasket.split(",");
