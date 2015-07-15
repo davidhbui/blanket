@@ -1,3 +1,9 @@
+/**
+ * Author: Tejas Narayan
+ * This is the screen that shows up after you have signed in and allows you to continue into the newsfeed
+ * of the app
+ */
+
 package cis350.blanket;
 
 import android.support.v7.app.ActionBarActivity;

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RelationDonationActivity">
+
+    <ListView
+        android:layout_width="fill_parent"
+        android:id="@+id/recip_list"
+        android:fadingEdge="none"
+        android:cacheColorHint="@null"
+        android:layout_height="wrap_content"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pick_recipient"
+        android:id="@+id/recip_click_button"
+        android:onClick="onRecipButtonClick"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:padding="20dp"
+        android:layout_marginBottom="20dp" />
+
+</RelativeLayout>

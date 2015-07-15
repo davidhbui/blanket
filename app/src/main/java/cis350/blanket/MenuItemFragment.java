@@ -36,28 +36,22 @@ public class MenuItemFragment extends Fragment {
     }
 
     @Override
-    // Set the view based on what
+    // Set the view based on what you selected
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView;
+
+        // Show the QR code scan button if we're on that menu option
         if (menuIndex == 1) {
             rootView = inflater.inflate(R.layout.fragment_scan, container, false);
         } else {
             rootView = inflater.inflate(R.layout.fragment_main, container, false);
         }
-
         return rootView;
     }
 
     @Override
     public void onAttach(Activity activity) {
-
-//        String asdf = getActivity().getLocalClassName();
-//        String attachString = "Here in onAttach and we are attached to " + asdf;
-        //Toast.makeText(getActivity().getApplicationContext(), attachString, Toast.LENGTH_SHORT).show();
-
         super.onAttach(activity);
-//        ((MainActivity) activity).onSectionAttached(
-//                getArguments().getInt(ARG_SECTION_NUMBER));
     }
 }

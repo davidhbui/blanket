@@ -10,6 +10,95 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/donationScreen">
+
+        <TextView
+            android:id="@+id/totalDonation"
+            android:padding="20dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/my_total_donation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <!-- As its id suggests, this is the thing that holds the cards-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/cardList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/relationScreen">
+
+        <TextView
+            android:id="@+id/numRelation"
+            android:padding="20dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/my_total_relationships"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <!-- As its id suggests, this is the thing that holds the cards-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/cardList1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/newsFeedScreen">
+
+        <TextView
+            android:id="@+id/newText"
+            android:padding="20dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Donations Near You"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <!-- As its id suggests, this is the thing that holds the cards-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/cardList2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/about">
+
+        <TextView
+            android:id="@+id/mhasp"
+            android:padding="20dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/about_mhasp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </ScrollView>
+
     <!-- android:layout_gravity="start" tells DrawerLayout to treat
          this as a sliding drawer on the left side for left-to-right
          languages and on the right side for right-to-left languages.

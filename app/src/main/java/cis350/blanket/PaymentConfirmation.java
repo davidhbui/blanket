@@ -10,10 +10,15 @@ import android.widget.Button;
 
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareButton;
+import com.parse.GetCallback;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
-//import com.facebook.share.model.ShareLinkContent;
-//import com.facebook.share.widget.ShareButton;
-
+/**
+ * Created by shivpatel on 4/16/15.
+ */
 
 public class PaymentConfirmation extends ActionBarActivity {
 

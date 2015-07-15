@@ -1,32 +1,61 @@
 <resources>
-    <string name="app_name">Blanket</string>
+    <string name="app_name">StreetChange</string>
 
     <string name="title_section1">News Feed</string>
-    <string name="title_section2">Scan Code</string>
+    <string name="title_section2">New Donation</string>
     <string name="title_section3">My Relationships</string>
+    <string name="title_section4">My Donation History</string>
+    <string name="title_section5">About Our Partners</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_example">Just pressed example action button</string>
 
+    <string name ="about_mhasp">The Mental Health Association of Southeastern Pennsylvania (MHASP)\n\n
+        Since 1951, MHASP has been a leader regionally, statewide and nationally in transforming mental health services to become more responsive to the priorities of individuals with mental health challenges and their family members.\n\n
+
+Our history is a robust story of creating opportunities for individuals and family members to experience hope and overcome the challenges imposed by mental health conditions. We are dedicated to innovating new service approaches, reducing discrimination, restoring hope and self-esteem, and creating the circumstances for individuals to improve their lives.\n\n
+
+MHASP is a nonprofit corporation that creates opportunities for individuals and family members to effectively respond to the challenges of mental health conditions through our work in five domains:  advocacy, direct support to individuals, training and education, information and referral, and technical assistance.\n\n
+
+Including individuals with mental health conditions and family members in all aspects of MHASP operations is an organizational value and practice.  Demonstrating the benefits of people in recovery and family members working with other professionals has positioned MHASP for a unique leadership role in a health care system that is rapidly shifting responsibility for health care management to consumers.\n\n
+
+Throughout Bucks, Chester, Delaware, Montgomery and Philadelphia counties, MHASP offers more than 40 services, most of which are peer-to-peer.  Statewide and nationally, MHASP provides training, advocacy and technical assistance. </string>
+
     <string name="action_settings">Settings</string>
-    <string name="title_activity_scan">ScanActivity</string>
+    <string name="title_activity_scan">Choose an item</string>
     <string name="scan_label">Scan a new QR code</string>
     <string name="scan_button">Scan</string>
+    <string name="relation_donation">Donate to existing relation</string>
     <string name="pick_button">Choose Item</string>
+    <string name="pick_recipient">Choose Recipient</string>
 
     <string name="facebook_app_id">1641620282732941</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_login">Login</string>
 
+    <string name="hello_world">Hello World!</string>
     <string name="title_activity_setup">Setup</string>
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_startup">Startup</string>
 
-    <string name="title_activity_donation_amount">DonationAmount</string>
-    <string name="title_activity_passcode_screen">PasscodeScreen</string>
-    <string name="title_activity_payment_confirmation">PaymentConfirmation</string>
+    <string name="title_activity_donation_amount">Donation Amount</string>
+    <string name="title_activity_passcode_screen">Passcode Screen</string>
+    <string name="title_activity_payment_confirmation">Payment Confirmation</string>
+    <string name="title_activity_donation_history">Donation History Activity</string>
+
+    <string name = "my_total_relationships">My Total Relationships: </string>
+    <string name="my_total_donation">My Total Donation Amount: </string>
+    <string name="donation_recipient_name">Recipient: </string>
+    <string name="donation_amount">Amount: </string>
+    <string name="donation_item">Item: </string>
+    <string name="donation_date">Date: </string>
+    <string name="donation_location">Location: </string>
+    <string name="donation_redeemed">Redeemed: </string>
+    <string name="donor_name">Donor: </string>
+    <string name="title_activity_test">Test</string>
+    <string name="title_activity_parse_test">ParseTestActivity</string>
+    <string name="title_activity_stripe">StripeActivity</string>
+
+
 
 </resources>

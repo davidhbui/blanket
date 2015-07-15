@@ -1,0 +1,49 @@
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    card_view:cardElevation="@dimen/zxing_standard_padding"
+    android:layout_margin="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/recipientName"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/darkpurple"
+            android:text="@string/donation_recipient_name"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/listedAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Amount:"
+            android:gravity="center_vertical"
+            android:textSize="12sp"
+            android:layout_below="@id/recipientName"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/listedFreq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of Donations:"
+            android:gravity="center_vertical"
+            android:textSize="12sp"
+            android:layout_below="@id/listedAmount"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"/>
+
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

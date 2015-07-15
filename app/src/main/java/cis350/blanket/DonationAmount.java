@@ -13,9 +13,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
 import java.text.NumberFormat;
+import java.util.List;
 
-
+/**
+ * Created by shivpatel on 4/16/15.
+ */
 public class DonationAmount extends ActionBarActivity {
 
     private EditText input;
@@ -41,12 +47,29 @@ public class DonationAmount extends ActionBarActivity {
 
             public void onClick(View v) {
                 Intent myIntent = new Intent(context, PasscodeScreen.class);
+                myIntent.putExtra("recipientName", previous.getStringExtra("recipientName"));
+
+                myIntent.putExtra("donationAmount", input.getText().toString());
                 myIntent.putExtra("item", previous.getStringExtra("item"));
+                myIntent.putExtra("donation_id", previous.getStringExtra("donation_id"));
                 startActivity(myIntent);
             }
         });
 
-        input.setText("$5.00");
+        double defaultPay = 5.00;
+
+        try {
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("SCUser");
+            query.whereEqualTo("facebookID", StreetChangeApplication.getInstance().userID);
+            List<ParseObject> temp = query.find();
+            ParseObject temp1 = temp.get(0);
+            defaultPay = Double.parseDouble((temp1.get("defaultDonation").toString()));
+
+        } catch (com.parse.ParseException e) {
+
+        }
+
+        input.setText(Double.toString(defaultPay));
 
         input.addTextChangedListener(new TextWatcher() {
             @Override

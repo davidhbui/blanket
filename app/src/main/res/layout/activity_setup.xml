@@ -10,14 +10,14 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="numberPassword"
+        android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/PINText"
         android:autoText="true"
         android:editable="true"
         android:password="true"
-        android:hint="Enter 4 digit PIN"
-        android:layout_centerVertical="true"
+        android:hint="Enter passphrase"
+        android:layout_above="@+id/DefaultAmount"
         android:layout_alignLeft="@+id/DefaultAmount"
         android:layout_alignStart="@+id/DefaultAmount" />
 
@@ -27,45 +27,86 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/DefaultAmount"
-        android:layout_alignTop="@+id/PINText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
         android:editable="true"
         android:autoText="true"
-        android:hint="Enter Default Donation ($)" />
+        android:hint="Enter Default Donation ($)"
+        android:layout_above="@+id/submitButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="31dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/CreditCardInfo"
-        android:layout_marginBottom="54dp"
+        android:id="@+id/number"
         android:editable="true"
-        android:hint="Enter Credit Card Info"
-        android:layout_above="@+id/PINText"
+        android:hint="Credit Card Number"
+        android:layout_marginTop="37dp"
+        android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/PINText"
         android:layout_alignStart="@+id/PINText" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Default"
-        android:id="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/CreditCardInfo"
-        android:layout_alignParentTop="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit Info"
         android:id="@+id/submitButton"
-        android:layout_below="@+id/DefaultAmount"
-        android:layout_alignLeft="@+id/DefaultAmount"
-        android:layout_alignStart="@+id/DefaultAmount"
-        android:layout_marginTop="51dp"
-        android:onClick="onSubmitButtonClick" />
+        android:onClick="onSubmitButtonClick"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/month"
+        android:editable="true"
+        android:hint="Expiration Month (MM)"
+        android:layout_below="@+id/number"
+        android:layout_alignLeft="@+id/number"
+        android:layout_alignStart="@+id/number"
+        android:layout_toStartOf="@+id/submitButton"
+        android:layout_alignRight="@+id/number"
+        android:layout_alignEnd="@+id/number" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/cvc"
+        android:editable="true"
+        android:hint="CVC (3 Digit)"
+        android:layout_below="@+id/month"
+        android:layout_alignLeft="@+id/month"
+        android:layout_alignStart="@+id/month"
+        android:layout_marginTop="50dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/year"
+        android:editable="true"
+        android:hint="Expiration Year (YYYY)"
+        android:layout_below="@+id/month"
+        android:layout_alignLeft="@+id/cvc"
+        android:layout_alignStart="@+id/cvc" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Please Note that 5% of every donation will be used to support Street Change"
+        android:id="@+id/textView5"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/PINText"
+        android:layout_alignStart="@+id/PINText"
+        android:layout_alignRight="@+id/PINText"
+        android:layout_alignEnd="@+id/PINText" />
 
 </RelativeLayout>

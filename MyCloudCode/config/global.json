@@ -1,0 +1,14 @@
+{
+  "global": {
+    "parseVersion": "1.4.2"
+  },
+  "applications": {
+    "Blanket": {
+      "applicationId": "WhyDX5it2l6Tg3EgQUuX8m9XxlqaT2Fh0XFiNgdq",
+      "masterKey": "vqlZ8zqd3ZarFaulmTUVcucXxawpDtnRaFw14U0L"
+    },
+    "_default": {
+      "link": "Blanket"
+    }
+  }
+}

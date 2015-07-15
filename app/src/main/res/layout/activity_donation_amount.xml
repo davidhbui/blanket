@@ -8,7 +8,7 @@
 
     <TextView android:text="Please enter donation amount." android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView"
+        android:id="@+id/enter_donation"
         android:layout_marginTop="57dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />

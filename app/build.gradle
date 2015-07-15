@@ -1,17 +1,20 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 22
+    buildToolsVersion "22.0.0"
 
     defaultConfig {
         applicationId "cis350.blanket"
         minSdkVersion 15
-        targetSdkVersion 21
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
     buildTypes {
+        debug {
+            debuggable true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -20,8 +23,16 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:22+'
+    compile files('/Users/shivpatel/Documents/workspace/blanket/libs/aws-android-sdk-core-2.2.0.jar')
+    compile files('/Users/shivpatel/Documents/workspace/blanket/libs/aws-android-sdk-ddb-2.2.0.jar')
+    compile files('/Users/shivpatel/Documents/workspace/blanket/libs/aws-android-sdk-ddb-mapper-2.2.0.jar')
+    compile files('/Users/aashishlalani/Desktop/13-microphilanthropy/libs/Parse-1.9.1.jar')
+    compile files('/Users/shivpatel/Documents/workspace/blanket/libs/stripe-java-1.15.1.jar')
+    compile files('/Users/shivpatel/Documents/workspace/blanket/libs/Parse-1.9.1.jar')
+    //compile files('C:/Users/davidhb/AndroidStudioProjects/13-microphilanthropy/13-microphilanthropy/libraries/Parse-1.9.1/Parse-1.9.1.jar')
+    //compile files('C:/Users/Tejas/OneDrive/School/Junior Year/Spring 2015/CIS 350/Project/13-microphilanthropy/libraries/Parse-1.9.1/Parse-1.9.1.jar')
 }
 
 repositories {
@@ -36,10 +47,6 @@ dependencies {
     // Supports Android 4.0.3 and later (API level 15)
     compile 'com.journeyapps:zxing-android-embedded:2.3.0@aar'
 
-    // Supports Android 2.1 and later (API level 7), but not optimal for later Android versions.
-    // If you only plan on supporting Android 4.0.3 and up, you don't need to include this.
-    compile 'com.journeyapps:zxing-android-legacy:2.3.0@aar'
-
     // Convenience library to launch the scanning Activities.
     // It automatically picks the best scanning library from the above two, depending on the
     // Android version and what is available.
@@ -51,7 +58,14 @@ dependencies {
     compile 'com.google.zxing:core:3.2.0'
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:appcompat-v7:22+'
     compile 'com.facebook.android:facebook-android-sdk:4.0.0'
-    compile 'com.android.support:support-v4:21.0.3'
+    compile 'com.android.support:support-v4:22+'
+
+    // RecyclerView and CardView
+    compile 'com.android.support:cardview-v7:22.0.+'
+    compile 'com.android.support:recyclerview-v7:+'
+    compile 'com.android.support:recyclerview-v7:22.0.0-rc1'
+
+    compile 'com.stripe:stripe-android:+'
 }

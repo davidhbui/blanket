@@ -19,7 +19,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_PERSONNAME = "personname";
     public static final String COLUMN_QUANTITY = "quantity";
-    public static final String COLUMN_GIFT = "gift";
+    public static final String[] COLUMN_GIFT = {"gift"};
 
     public MyDBHandler(Context context, String name,
                        SQLiteDatabase.CursorFactory factory, int version) {
@@ -47,7 +47,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_PERSONNAME, person.getProductName());
         values.put(COLUMN_QUANTITY, person.getQuantity());
-        values.put(COLUMN_GIFT, person.get_giftBasket());
+        //values.put(COLUMN_GIFT, person.get_giftBasket());
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -67,10 +67,10 @@ public class MyDBHandler extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             cursor.moveToFirst();
-            product.setID(Integer.parseInt(cursor.getString(0)));
+            product.setID(cursor.getString(0));
             product.setProductName(cursor.getString(1));
             product.setQuantity(Integer.parseInt(cursor.getString(2)));
-            product.set_giftBasket(cursor.getString(3));
+            //product.set_giftBasket(cursor.getString(3));
             cursor.close();
         } else {
             product = null;
@@ -93,7 +93,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         Person product = new Person();
 
         if (cursor.moveToFirst()) {
-            product.setID(Integer.parseInt(cursor.getString(0)));
+            product.setID(cursor.getString(0));
             db.delete(TABLE_PERSONS, COLUMN_ID + " = ?",
                     new String[] { String.valueOf(product.getID()) });
             cursor.close();

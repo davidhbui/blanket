@@ -1,6 +1,8 @@
 package cis350.blanket;
 
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -17,19 +19,36 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.LinkedHashMap;
+import com.parse.GetCallback;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
-// Activity to scan a QR code
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+
+/*
+Begin to process a donation by presenting the user with the homeless person's wishlist
+
+By David Bui
+ */
+
+
 public class ScanActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
-    private String codeResults;
-    private MyDBHandler dbHandler;
+    private String codeResults;         // ID
     private String selection;
     public static final int DonationAmount_ID = 4;
     private ListView checkList;
     private String[] arr;
+    private ArrayList<String> items;
+    private String rName;
     private boolean fill;
+    private int itemsLength;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,58 +60,55 @@ public class ScanActivity extends ActionBarActivity
 
         setContentView(R.layout.activity_scan);
 
-        dbHandler = new MyDBHandler(this, null, null, 1);
-
         selection = "";
         fill = false;
+
 
         // If we have a string to look at, process it
         if (codeResults.compareTo("") != 0) {
             process();
         }
 
+        itemsLength = 0;
+
+
     }
 
     // What happens when you press the scan button
     public void process() {
 
-        String contents = codeResults;
-        //Toast.makeText(getApplicationContext(), contents, Toast.LENGTH_SHORT).show();
+        Parse.initialize(this, "WhyDX5it2l6Tg3EgQUuX8m9XxlqaT2Fh0XFiNgdq",
+                "SkUYkfWplylFJYPY4E199xUstPqvNk00PScCFxRX");
 
-        // Make a dummy (extremely handsome) person
-        Person david = new Person(1, "David", 0, "Food,Blanket,Jacket,Water");
-        dbHandler.addPerson(david);
 
-        // Hard coded this in so that the demo would work with any QR code that it reads
-        //contents = "David";
+        final Context c = getApplicationContext();
 
-        // Get the person from the DB
-        Person client = dbHandler.findProduct(contents);
+        // Get the person in the database based on the QR code
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Person");
 
-        // If we find a match in the database
-        if (client != null) {
+        try {
 
-            // Getting the giftbasket doesn't seem to work
-            String giftBasket = client.get_giftBasket();
-
-            // Hard coded this in because getting the gift basket didn't seem to work
-            //String giftBasket = "Food,Blanket,Jacket,Water";
-
-            // Separate out by comma
-            String [] items = giftBasket.split(",");
-            arr = new String[items.length + 1];
-            for (int i = 0; i < items.length; i++) {
-                arr[i] = items[i];
-            }
-            arr[items.length] = "General Donation";
-
-            fill = true;
-            checkList = (ListView) findViewById(R.id.checkBox);
-            checkList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-            checkList.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, R.id.text1, arr));
-            checkList.setOnItemSelectedListener(new MyListListener());
+            ParseObject person = query.get(codeResults);
+            rName = (String)person.get("Name");
+            items = (ArrayList<String>)person.get("wishlist");
+            itemsLength = items.size();
+        } catch (Exception e) {
 
         }
+
+
+        arr = new String[itemsLength + 1];
+        for (int i = 0; i < itemsLength; i++) {
+            arr[i] = items.get(i);
+        }
+        arr[itemsLength] = "General Donation";
+
+        // Populate the wishlist screen
+        fill = true;
+        checkList = (ListView) findViewById(R.id.checkBox);
+        checkList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        checkList.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, R.id.text1, arr));
+        checkList.setOnItemClickListener(new MyListListener());
 
     }
 
@@ -122,11 +138,14 @@ public class ScanActivity extends ActionBarActivity
 
         if (fill == true) {
 
-            MyListListener listener = (MyListListener)checkList.getOnItemSelectedListener();
-            int index = listener.choice;
-            selection = arr[index];
+            // Get the item that the user selected
+            MyListListener listener = (MyListListener)checkList.getOnItemClickListener();
+            selection = listener.choiceString;
 
+            // Pass all of this into the donation amount screen
             Intent i = new Intent(this, DonationAmount.class);
+            i.putExtra("recipientName", rName);
+            i.putExtra("donation_id", codeResults);
             i.putExtra("item", selection);
             startActivityForResult(i, DonationAmount_ID);
         } else {
